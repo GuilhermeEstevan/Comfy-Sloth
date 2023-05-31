@@ -130,7 +130,7 @@ export const FilterProvider = ({ children }) => {
     useEffect(() => {
         filterProducts()
         sortProducts();
-    }, [filters]);
+    }, [sort, filters]);
 
 
     return (
