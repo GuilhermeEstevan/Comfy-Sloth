@@ -35,21 +35,21 @@ export const FilterProvider = ({ children }) => {
         const value = e.target.value
         setSort(value)
     }
-    const sortProducts = () => {
-        let tempProducts = [...filteredProducts]
+    // const sortProducts = () => {
+    //     let tempProducts = [...filteredProducts]
 
-        if (sort === 'price-lowest') {
-            tempProducts = tempProducts.sort((a, b) => a.price - b.price);
-        } else if (sort === 'price-highest') {
-            tempProducts = tempProducts.sort((a, b) => b.price - a.price);
-        } else if (sort === 'name-a') {
-            tempProducts = tempProducts.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (sort === 'name-z') {
-            tempProducts = tempProducts.sort((a, b) => b.name.localeCompare(a.name));
-        }
+    //     if (sort === 'price-lowest') {
+    //         tempProducts = tempProducts.sort((a, b) => a.price - b.price);
+    //     } else if (sort === 'price-highest') {
+    //         tempProducts = tempProducts.sort((a, b) => b.price - a.price);
+    //     } else if (sort === 'name-a') {
+    //         tempProducts = tempProducts.sort((a, b) => a.name.localeCompare(b.name));
+    //     } else if (sort === 'name-z') {
+    //         tempProducts = tempProducts.sort((a, b) => b.name.localeCompare(a.name));
+    //     }
 
-        setFilteredProducts(tempProducts)
-    }
+    //     setFilteredProducts(tempProducts)
+    // }
 
     const updateFilters = (e) => {
         let name = e.target.name
@@ -100,15 +100,29 @@ export const FilterProvider = ({ children }) => {
 
         let tempProducts = [...allProducts]
         const { text, category, company, color, price, shipping } = filters
-        console.log(tempProducts);
+
         if (text) {
             tempProducts = tempProducts.filter((product) =>
                 product.name.toLowerCase().includes(text.toLowerCase())
             )
         }
-        console.log(tempProducts);
-        console.log('filter');
+
         setFilteredProducts(tempProducts)
+
+        const sortProducts = () => {
+
+            if (sort === 'price-lowest') {
+                tempProducts = tempProducts.sort((a, b) => a.price - b.price);
+            } else if (sort === 'price-highest') {
+                tempProducts = tempProducts.sort((a, b) => b.price - a.price);
+            } else if (sort === 'name-a') {
+                tempProducts = tempProducts.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sort === 'name-z') {
+                tempProducts = tempProducts.sort((a, b) => b.name.localeCompare(a.name));
+            }
+            setFilteredProducts(tempProducts)
+        }
+        sortProducts()
     }
 
 
@@ -129,7 +143,6 @@ export const FilterProvider = ({ children }) => {
 
     useEffect(() => {
         filterProducts()
-        sortProducts();
     }, [sort, filters]);
 
 
