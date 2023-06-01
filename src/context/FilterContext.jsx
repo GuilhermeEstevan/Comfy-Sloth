@@ -35,6 +35,7 @@ export const FilterProvider = ({ children }) => {
         const value = e.target.value
         setSort(value)
     }
+
     // const sortProducts = () => {
     //     let tempProducts = [...filteredProducts]
 
@@ -100,13 +101,42 @@ export const FilterProvider = ({ children }) => {
 
         let tempProducts = [...allProducts]
         const { text, category, company, color, price, shipping } = filters
-
+        // TEXT
         if (text) {
             tempProducts = tempProducts.filter((product) =>
                 product.name.toLowerCase().includes(text.toLowerCase())
             )
         }
-
+        // CATEGORY
+        if (category !== 'all') {
+            tempProducts = tempProducts.filter((product) => {
+                return product.category === category
+            })
+        }
+        // COMPANY
+        if (company !== 'all') {
+            tempProducts = tempProducts.filter((product) => {
+                return product.company === company
+            })
+        }
+        // COLORS
+        if (color !== 'all') {
+            tempProducts = tempProducts.filter((product) => {
+                return product.colors.find((c) => c === color)
+            })
+        }
+        // PRICE
+        if (price) {
+            tempProducts = tempProducts.filter((product) => {
+                return product.price <= price
+            })
+        }
+        // SHIPPING
+        if (shipping) {
+            tempProducts = tempProducts.filter((product) => {
+                return product.shipping === true
+            })
+        }
         setFilteredProducts(tempProducts)
 
         const sortProducts = () => {
