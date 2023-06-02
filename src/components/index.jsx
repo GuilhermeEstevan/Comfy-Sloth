@@ -14,5 +14,6 @@ import Loading from './Loading/Loading'
 import Filters from './Filters/Filters'
 import ProductsList from './ProductsList/ProductsList'
 import Sort from './Sort/Sort'
+import CartContent from './CartContent/CartContent'
 
-export { Sidebar, Navbar, Footer, PageHero, FeaturedProducts, Contact, Hero, Services, Error, Loading, AddToCart, ProductImages, Stars, Filters, ProductsList, Sort }
+export { Sidebar, Navbar, Footer, PageHero, FeaturedProducts, Contact, Hero, Services, Error, Loading, AddToCart, ProductImages, Stars, Filters, ProductsList, Sort, CartContent }

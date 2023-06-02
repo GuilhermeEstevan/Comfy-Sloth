@@ -10,7 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   <ProductsProvider>
     <FilterProvider>
-      <App />
+      <CartProvider>
+        <App />
+      </CartProvider>
     </FilterProvider>
   </ProductsProvider>
 )
