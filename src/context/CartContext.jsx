@@ -50,19 +50,49 @@ export const CartProvider = ({ children }) => {
     }
 
     const removeItem = (id) => {
-
+        const tempCart = cart.filter((item) => item.id != id)
+        setCart(tempCart)
     }
 
     const toggleAmount = (id, value) => {
-
+        console.log(id, value);
+        let tempCart = cart.map((item) => {
+            if (item.id === id) {
+                if (value === 'increase') {
+                    let newAmount = item.amount + 1
+                    if (newAmount > item.max) {
+                        newAmount = item.max
+                    }
+                    return { ...item, amount: newAmount }
+                }
+                if (value === 'decrease') {
+                    let newAmount = item.amount - 1
+                    if (newAmount < 1) {
+                        return null
+                    }
+                    return { ...item, amount: newAmount }
+                }
+            }
+            return item
+        })
+        tempCart = tempCart.filter((item) => item !== null)
+        setCart(tempCart)
     }
 
     const clearCart = () => {
-
+        setCart([])
     }
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
+        const totalAmount = cart.reduce((total, item) => {
+            return total + item.amount * item.price
+        }, 0)
+        const totalItems = cart.reduce((total, item) => {
+            return total + item.amount
+        }, 0)
+        setTotalAmount(totalAmount)
+        setTotalItems(totalItems)
     }, [cart])
 
     return (

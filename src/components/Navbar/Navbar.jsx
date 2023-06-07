@@ -5,11 +5,12 @@ import { Link } from "react-router-dom"
 import { links } from '../../Utils/Constants'
 import Cart_LoginBtn from '../Cart&loginBtn/Cart_LoginBtn'
 import { useProductsContext } from "../../context/ProductsContext"
+import { useUserContext } from "../../context/UserContext"
 
 const Navbar = () => {
 
   const { isSidebarOpen, setIsSidebarOpen } = useProductsContext()
-
+  const { myUser } = useUserContext()
 
   return (
     <NavContainer>
@@ -30,6 +31,11 @@ const Navbar = () => {
               <Link to={url}>{text}</Link>
             </li>
           })}
+          {myUser && (
+            <li>
+              <Link to='/checkout'>Checkout</Link>
+            </li>
+          )}
         </ul>
         <Cart_LoginBtn />
       </div>
