@@ -1,12 +1,5 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { loadStripe } from '@stripe/stripe-js'
-import {
-    CardElement,
-    useStripe,
-    Elements,
-    useElements,
-} from '@stripe/react-stripe-js'
 import axios from 'axios'
 import { StripeContainer } from './index'
 
@@ -18,8 +11,10 @@ const CheckoutForm = () => {
 
 const StripeCheckout = () => {
     return (
-        <Wrapper>
+        <StripeContainer>
             <CheckoutForm />
-        </Wrapper>
+        </StripeContainer>
     )
 }
+
+export default StripeCheckout

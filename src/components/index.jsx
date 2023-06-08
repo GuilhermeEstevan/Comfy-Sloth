@@ -15,5 +15,6 @@ import Filters from './Filters/Filters'
 import ProductsList from './ProductsList/ProductsList'
 import Sort from './Sort/Sort'
 import CartContent from './CartContent/CartContent'
+import StripeCheckout from './StripeCheckout/StripeCheckout'
 
-export { Sidebar, Navbar, Footer, PageHero, FeaturedProducts, Contact, Hero, Services, Error, Loading, AddToCart, ProductImages, Stars, Filters, ProductsList, Sort, CartContent }
+export { Sidebar, Navbar, Footer, PageHero, FeaturedProducts, Contact, Hero, Services, Error, Loading, AddToCart, ProductImages, Stars, Filters, ProductsList, Sort, CartContent, StripeCheckout }
