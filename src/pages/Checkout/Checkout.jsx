@@ -1,4 +1,4 @@
-import { PageHero, StripeCheckout, } from "../../components"
+import { PageHero, CheckoutForm, } from "../../components"
 import { useCartContext } from "../../context/CartContext"
 import { CheckoutPageContainer } from "./index"
 import { Link } from "react-router-dom"
@@ -20,7 +20,7 @@ const Checkout = () => {
             </Link>
           </div>
         ) : (
-          <StripeCheckout />
+          <CheckoutForm />
         )
         }
       </CheckoutPageContainer>
