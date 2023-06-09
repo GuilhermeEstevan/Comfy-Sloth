@@ -7,8 +7,7 @@ max-width: 500px;
 
   form{
     width: 100%;
-    /* background: var(--clr-grey-10); */
-    background: var(--clr-primary-7);
+    background: var(--clr-grey-10);
     border-radius: var(--radius);
     padding: 2rem;
     display: flex;
@@ -82,7 +81,7 @@ label{
 
 
   button{
-      margin-top: 1rem;
+      margin-top: 2rem;
       padding: 0.8rem 1rem;
       border: none;
       letter-spacing: 0.3rem;
