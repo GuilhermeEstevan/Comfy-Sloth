@@ -3,13 +3,13 @@ import { CheckoutFormContainer } from './index'
 import { formatPrice } from '../../Utils/Helpers'
 import { useCartContext } from '../../context/CartContext'
 import { useUserContext } from '../../context/UserContext'
-
+import { useAuth0 } from '@auth0/auth0-react'
+import { Wrapper } from './index'
 
 const CheckoutForm = () => {
 
     const { cart, totalAmount, shipping, clearCart } = useCartContext()
-    const { myUser } = useUserContext()
-
+    const { isLoading, user } = useAuth0()
     const [cardNumber, setCardNumber] = useState('');
     const [expirationDate, setExpirationDate] = useState('');
     const [cvv, setCVV] = useState('');
@@ -29,8 +29,20 @@ const CheckoutForm = () => {
         value = value.slice(0, 3);
         setCVV(value)
     }
+
+
+    if (isLoading) {
+        return (
+            <Wrapper >
+                Loading...
+            </Wrapper>
+        )
+    }
+
     return (
         <CheckoutFormContainer className='page-100'>
+            <h4>{`hello, ${user.name}`}</h4>
+            <p>{`Your total is ${formatPrice(totalAmount)}`}</p>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="cardNumber">
                     Number <br />
@@ -55,8 +67,8 @@ const CheckoutForm = () => {
                 <div className='expiration'>
                     <label htmlFor="month">
                         Month <br />
-                        <select name="month" id="month" >
-                            <option value="" disabled>Month</option>
+                        <select name="month" id="month" defaultValue='month'>
+                            <option value="month" disabled >Month</option>
                             {Array.from({ length: 12 }, (_, index) => (
                                 <option key={index + 1} value={index + 1}>
                                     {index + 1}
@@ -66,16 +78,20 @@ const CheckoutForm = () => {
                     </label>
                     <label htmlFor="year">
                         Year <br />
-                        <select name="year" id="year">
-                            <option value="" disabled>Year</option>
-                            {Array.from({ length: 12 }, (_, index) => (
-                                <option key={index + 1} value={index + 1}>
-                                    {index + 1}
-                                </option>
-                            ))}
+                        <select name="year" id="year" defaultValue="year">
+                            <option value="year" disabled >Year</option>
+                            {Array.from({ length: 13 }, (_, index) => {
+                                const currentYear = new Date().getFullYear()
+                                const year = currentYear + index
+                                return (
+                                    <option value={year} key={year}>
+                                        {year}
+                                    </option>
+                                )
+                            })}
                         </select>
                     </label>
-                    <label htmlFor="cvv">
+                    <label htmlFor="cvv" className='cvv'>
                         CVV <br />
                         <input
                             type="number"

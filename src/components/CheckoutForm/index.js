@@ -2,12 +2,14 @@ import styled from "styled-components"
 
 export const CheckoutFormContainer = styled.section`
 
-width: 60vw;
-max-width: 600px;
+width: 70vw;
+max-width: 500px;
 
   form{
     width: 100%;
-    background: var(--clr-grey-10);
+    /* background: var(--clr-grey-10); */
+    background: var(--clr-primary-7);
+    border-radius: var(--radius);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -23,7 +25,8 @@ label{
     width: 100%;
     background: var(--clr-white);
     color: var(--clr-primary-1);
-    padding: 0.5rem;
+    border-radius: var(--radius);
+    padding: 0.8rem;
     margin: 0.5rem 0;
     border: none;
     appearance: textfield;
@@ -32,6 +35,7 @@ label{
     -webkit-appearance: none;
     margin: 0;  
     font-size: 1rem;
+    
   }
   }
 
@@ -46,6 +50,7 @@ label{
     width: 50%;
     background: var(--clr-white);
     color: var(--clr-primary-1);
+    border-radius: var(--radius);
     padding: 0.7rem;
     margin: 0.5rem 0;
     border: none;
@@ -66,6 +71,7 @@ label{
     font-size: 1.2rem;
     color: var(--clr-primary-1);
     border-color: transparent;
+    border-radius: var(--radius);
   }
 }
 #month:hover,
@@ -95,3 +101,10 @@ label{
     }
   }
 `
+
+
+ export const Wrapper = styled.section`
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    `
